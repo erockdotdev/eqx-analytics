@@ -1,6 +1,6 @@
 const useBrowserStorage = require("../browserStorage/index.js");
 const { ANALYTICS_DATA_KEYS } = require("../utilities/constants");
-const { hasLocalStorageSupport } = require("../utilities/index.js");
+const { hasLocalStorageSupport, timestamp } = require("../utilities/index.js");
 const {
   checkIfValidPageObject,
   checkIfValidUserObject,
@@ -62,10 +62,11 @@ const getEventData = () => {
   return {...userData,...pageData, ...retrievedItem };
 };
 
-const setEventData = (userData) => {
+const setEventData = (eventData) => {
+  console.log("timestamp", timestamp)
   // const isValidObject = checkIfValidUserObject(userData);
   // if (!isValidObject) return { ...UNABLE_TO_SET_ITEM_KEY_ERROR, userData };
-  browserStorage.setItem(ANALYTICS_DATA_KEYS.eventData, userData);
+  browserStorage.setItem(ANALYTICS_DATA_KEYS.eventData, {...eventData, timestamp} );
   return getEventData()
   // return verifyUserDataAdded();
 };
