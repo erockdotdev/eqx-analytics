@@ -30,7 +30,9 @@ const verifyPageDataAdded = () => {
 };
 
 const verifyUserDataAdded = () => {
-  const userDataInStorage = getUserData();
+  const userDataInStorage = browserStorage.getItem(
+    ANALYTICS_DATA_KEYS.userData
+  );
   if (userDataInStorage)
     return {
       message: `Successfully set ${ANALYTICS_DATA_KEYS.userData}`,

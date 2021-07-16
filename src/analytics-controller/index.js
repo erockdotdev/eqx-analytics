@@ -53,6 +53,29 @@ const removeUserData = () => {
 };
 
 /**
+ * Event Data Functions
+ */
+const getEventData = () => {
+  const userData = browserStorage.getItem(ANALYTICS_DATA_KEYS.userData);
+  const pageData = browserStorage.getItem(ANALYTICS_DATA_KEYS.pageData);
+  const retrievedItem = browserStorage.getItem(ANALYTICS_DATA_KEYS.eventData);
+  return {...userData,...pageData, ...retrievedItem };
+};
+
+const setEventData = (userData) => {
+  // const isValidObject = checkIfValidUserObject(userData);
+  // if (!isValidObject) return { ...UNABLE_TO_SET_ITEM_KEY_ERROR, userData };
+  browserStorage.setItem(ANALYTICS_DATA_KEYS.eventData, userData);
+  return getEventData()
+  // return verifyUserDataAdded();
+};
+
+const removeEventData = () => {
+  browserStorage.removeItem(ANALYTICS_DATA_KEYS.eventData);
+  // return verifyUserDataRemoved();
+};
+
+/**
  * event - get pageData appData, userData, return with event data
  */
 
@@ -67,6 +90,11 @@ const useAnalytics = {
     set: setUserData,
     remove: removeUserData,
   },
+  event: {
+    get: getEventData,
+    set: setEventData,
+    remove: removeEventData,
+  }
 };
 
 module.exports = useAnalytics;

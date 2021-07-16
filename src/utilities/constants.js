@@ -3,6 +3,7 @@ const STORAGE_TYPE = "localStorage";
 const ANALYTICS_DATA_KEYS = {
   pageData: "PAGE_DATA",
   userData: "USER_DATA",
+  eventData: "EVENT_DATA",
 };
 
 const ERROR = {
