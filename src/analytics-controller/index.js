@@ -4,32 +4,30 @@ const { hasLocalStorageSupport, timestamp } = require("../utilities/index.js");
 const {
   checkIfValidPageObject,
   checkIfValidUserObject,
-  verifyPageDataAdded,
-  verifyUserDataAdded,
-  verifyUserDataRemoved,
 } = require("./controller-utilities.js");
 
 const hasSupport = hasLocalStorageSupport();
 const browserStorage = useBrowserStorage(hasSupport);
 
+
 /**
  * Page Data Functions
  */
 const getPageData = () => {
-  const retrievedItem = browserStorage.getItem(ANALYTICS_DATA_KEYS.pageData);
-  return retrievedItem;
+  const pageData = browserStorage.getItem(ANALYTICS_DATA_KEYS.pageData);
+  return pageData;
 };
 
 const setPageData = (pageData) => {
   const isValidObject = checkIfValidPageObject(pageData);
   if (!isValidObject) return { ...UNABLE_TO_SET_ITEM_KEY_ERROR, pageData };
   browserStorage.setItem(ANALYTICS_DATA_KEYS.pageData, pageData);
-  return verifyPageDataAdded();
+  return getPageData();
 };
 
 const removePageData = () => {
   browserStorage.removeItem(ANALYTICS_DATA_KEYS.pageData);
-  return verifyPageDataRemoved();
+  return getPageData();
 };
 
 /**
@@ -44,12 +42,12 @@ const setUserData = (userData) => {
   const isValidObject = checkIfValidUserObject(userData);
   if (!isValidObject) return { ...UNABLE_TO_SET_ITEM_KEY_ERROR, userData };
   browserStorage.setItem(ANALYTICS_DATA_KEYS.userData, userData);
-  return verifyUserDataAdded();
+  return getUserData();
 };
 
 const removeUserData = () => {
   browserStorage.removeItem(ANALYTICS_DATA_KEYS.userData);
-  return verifyUserDataRemoved();
+  return getUserData();
 };
 
 /**
@@ -63,17 +61,14 @@ const getEventData = () => {
 };
 
 const setEventData = (eventData) => {
-  console.log("timestamp", timestamp)
-  // const isValidObject = checkIfValidUserObject(userData);
-  // if (!isValidObject) return { ...UNABLE_TO_SET_ITEM_KEY_ERROR, userData };
-  browserStorage.setItem(ANALYTICS_DATA_KEYS.eventData, {...eventData, timestamp} );
+  const item = {...eventData, timestamp}
+  browserStorage.setItem(ANALYTICS_DATA_KEYS.eventData, item );
   return getEventData()
-  // return verifyUserDataAdded();
 };
 
 const removeEventData = () => {
   browserStorage.removeItem(ANALYTICS_DATA_KEYS.eventData);
-  // return verifyUserDataRemoved();
+  return getEventData()
 };
 
 /**
