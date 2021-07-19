@@ -20,8 +20,10 @@ const useBrowserStorage = (hasSupport) => {
     const storage = window[STORAGE_TYPE];
     function getItem(key) {
       const value = storage.getItem(key);
-      if (value) return parseValue(value);
-      return Console.error({ ...ERROR.UNABLE_TO_RETRIEVE_ITEM, item: key });
+      if (value) {
+        return parseValue(value);
+      }
+      throw ERROR.UNABLE_TO_RETRIEVE_ITEM;
     }
     function setItem(key, value) {
       storage.setItem(key, JSON.stringify(value));
@@ -35,7 +37,7 @@ const useBrowserStorage = (hasSupport) => {
       removeItem,
     };
   } catch (error) {
-    Console.error("Error:", error);
+    console.log("Error:", JSON.stringify(error));
   }
 };
 

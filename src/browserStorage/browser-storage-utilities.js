@@ -1,5 +1,7 @@
 function parseValue(input) {
   let value;
+
+
   try {
     value = JSON.parse(input);
     if (typeof value === "undefined") {

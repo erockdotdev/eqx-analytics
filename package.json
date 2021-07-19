@@ -4,11 +4,14 @@
   "description": "analytics helpers for equinox web projects",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "unit57",
   "license": "ISC",
   "dependencies": {
     "dead-simple-console-colors": "^1.0.11"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6"
   }
 }

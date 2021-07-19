@@ -1,5 +1,8 @@
 const useBrowserStorage = require("../browserStorage/index.js");
-const { ANALYTICS_DATA_KEYS } = require("../utilities/constants");
+const {
+  ANALYTICS_DATA_KEYS,
+  ERROR: { UNABLE_TO_SET_ITEM },
+} = require("../utilities/constants");
 const { hasLocalStorageSupport, timestamp } = require("../utilities/index.js");
 const {
   checkIfValidPageObject,
@@ -8,7 +11,6 @@ const {
 
 const hasSupport = hasLocalStorageSupport();
 const browserStorage = useBrowserStorage(hasSupport);
-
 
 /**
  * Page Data Functions
@@ -20,7 +22,9 @@ const getPageData = () => {
 
 const setPageData = (pageData) => {
   const isValidObject = checkIfValidPageObject(pageData);
-  if (!isValidObject) return { ...UNABLE_TO_SET_ITEM_KEY_ERROR, pageData };
+  if (!isValidObject) {
+    return UNABLE_TO_SET_ITEM;
+  }
   browserStorage.setItem(ANALYTICS_DATA_KEYS.pageData, pageData);
   return getPageData();
 };
@@ -57,18 +61,18 @@ const getEventData = () => {
   const userData = browserStorage.getItem(ANALYTICS_DATA_KEYS.userData);
   const pageData = browserStorage.getItem(ANALYTICS_DATA_KEYS.pageData);
   const retrievedItem = browserStorage.getItem(ANALYTICS_DATA_KEYS.eventData);
-  return {...userData,...pageData, ...retrievedItem };
+  return { ...userData, ...pageData, ...retrievedItem };
 };
 
 const setEventData = (eventData) => {
-  const item = {...eventData, timestamp}
-  browserStorage.setItem(ANALYTICS_DATA_KEYS.eventData, item );
-  return getEventData()
+  const item = { ...eventData, timestamp };
+  browserStorage.setItem(ANALYTICS_DATA_KEYS.eventData, item);
+  return getEventData();
 };
 
 const removeEventData = () => {
   browserStorage.removeItem(ANALYTICS_DATA_KEYS.eventData);
-  return getEventData()
+  return getEventData();
 };
 
 /**
@@ -90,7 +94,7 @@ const useAnalytics = {
     get: getEventData,
     set: setEventData,
     remove: removeEventData,
-  }
+  },
 };
 
 module.exports = useAnalytics;
