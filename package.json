@@ -1,6 +1,6 @@
 {
   "name": "eqx-analytics",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "analytics helpers for equinox web projects",
   "main": "index.js",
   "scripts": {

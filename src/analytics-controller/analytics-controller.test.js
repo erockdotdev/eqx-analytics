@@ -32,18 +32,18 @@ describe("ManagePageData", () => {
 
     expect(pageResponse).toBe(UNABLE_TO_SET_ITEM);
   });
-  it("Should read page data to local storage", () => {
+  it("Should read Page Data from local storage", () => {
     const storedPageData = page.get();
+
     expect(PAGE_DATA).toEqual({ ...storedPageData });
   });
-  it("Should remove page data to local storage", () => {
-    page.set(PAGE_DATA);
+
+  it("Should remove Page Data from local storage", () => {
     try {
-        page.remove();
-        page.get();
-        expect(true).toBe(false);
+      page.remove();
+      page.get();
     } catch (e) {
-        expect(e.error).toBe(UNABLE_TO_RETRIEVE_ITEM.error);
+      expect(e.error).toBe(UNABLE_TO_RETRIEVE_ITEM.error);
     }
   });
 });
