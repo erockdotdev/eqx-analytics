@@ -44,7 +44,7 @@ const getUserData = () => {
 
 const setUserData = (userData) => {
   const isValidObject = checkIfValidUserObject(userData);
-  if (!isValidObject) return { ...UNABLE_TO_SET_ITEM_KEY_ERROR, userData };
+  if (!isValidObject) return UNABLE_TO_SET_ITEM ;
   browserStorage.setItem(ANALYTICS_DATA_KEYS.userData, userData);
   return getUserData();
 };
