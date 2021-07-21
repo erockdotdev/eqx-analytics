@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "lint:js": "eslint . --ext .js",
-    "lint:js:fix": "npm run lint:js -- --fix",
-    "test:related": "jest --bail --findRelatedTests"
+    "prepare": "husky install"
   },
   "author": "unit57",
   "license": "ISC",
@@ -15,8 +13,7 @@
     "dead-simple-console-colors": "^1.0.11"
   },
   "devDependencies": {
-    "husky": "^7.0.1",
     "jest": "^27.0.6",
-    "lint-staged": "^11.0.1"
+    "husky": "^7.0.0"
   }
 }
