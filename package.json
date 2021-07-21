@@ -4,7 +4,10 @@
   "description": "analytics helpers for equinox web projects",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint:js": "eslint . --ext .js",
+    "lint:js:fix": "npm run lint:js -- --fix",
+    "test:related": "jest --bail --findRelatedTests"
   },
   "author": "unit57",
   "license": "ISC",
