@@ -97,4 +97,6 @@ const useAnalytics = {
   },
 };
 
+const test = {}
+
 module.exports = useAnalytics;
