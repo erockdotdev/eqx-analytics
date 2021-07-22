@@ -1,7 +1,5 @@
-function parseValue(input) {
+export const parseValue = (input) => {
   let value;
-
-
   try {
     value = JSON.parse(input);
     if (typeof value === "undefined") {
@@ -22,6 +20,3 @@ function parseValue(input) {
   return value;
 }
 
-module.exports = {
-  parseValue,
-};

@@ -1,13 +1,8 @@
-const useBrowserStorage = require("../browserStorage/index.js");
-const {
-  ANALYTICS_DATA_KEYS,
-  ERROR: { UNABLE_TO_SET_ITEM },
-} = require("../utilities/constants");
-const { hasLocalStorageSupport, timestamp } = require("../utilities/index.js");
-const {
-  checkIfValidPageObject,
-  checkIfValidUserObject,
-} = require("./controller-utilities.js");
+
+import useBrowserStorage from "../browserStorage";
+import { ANALYTICS_DATA_KEYS } from "../utilities/constants";
+import { hasLocalStorageSupport, timestamp } from "../utilities";
+
 
 const hasSupport = hasLocalStorageSupport();
 const browserStorage = useBrowserStorage(hasSupport);
@@ -21,10 +16,10 @@ const getPageData = () => {
 };
 
 const setPageData = (pageData) => {
-  const isValidObject = checkIfValidPageObject(pageData);
-  if (!isValidObject) {
-    return UNABLE_TO_SET_ITEM;
-  }
+  // const isValidObject = checkIfValidPageObject(pageData);
+  // if (!isValidObject) {
+  //   return UNABLE_TO_SET_ITEM;
+  // }
   browserStorage.setItem(ANALYTICS_DATA_KEYS.pageData, pageData);
   return getPageData();
 };
@@ -43,8 +38,8 @@ const getUserData = () => {
 };
 
 const setUserData = (userData) => {
-  const isValidObject = checkIfValidUserObject(userData);
-  if (!isValidObject) return UNABLE_TO_SET_ITEM ;
+  // const isValidObject = checkIfValidUserObject(userData);
+  // if (!isValidObject) return UNABLE_TO_SET_ITEM ;
   browserStorage.setItem(ANALYTICS_DATA_KEYS.userData, userData);
   return getUserData();
 };
@@ -97,4 +92,4 @@ const useAnalytics = {
   },
 };
 
-module.exports = useAnalytics;
+export default useAnalytics;

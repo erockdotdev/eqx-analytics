@@ -1,6 +1,6 @@
-const Console = require("dead-simple-console-colors");
-const { parseValue } = require("./browser-storage-utilities");
-const { STORAGE_TYPE, ERROR } = require("../utilities/constants.js");
+import Console from "dead-simple-console-colors";
+import { parseValue } from "./browser-storage-utilities";
+import { STORAGE_TYPE, ERROR} from "../utilities/constants";
 
 /**
  * If there is no browser storage (rendering first on server side)
@@ -18,17 +18,17 @@ const useBrowserStorage = (hasSupport) => {
   }
   try {
     const storage = window[STORAGE_TYPE];
-    function getItem(key) {
+    const getItem = (key) => {
       const value = storage.getItem(key);
       if (value) {
         return parseValue(value);
       }
       throw ERROR.UNABLE_TO_RETRIEVE_ITEM;
     }
-    function setItem(key, value) {
+    const setItem = (key, value) => {
       storage.setItem(key, JSON.stringify(value));
     }
-    function removeItem(key) {
+    const removeItem = (key) => {
       storage.removeItem(key);
     }
     return {
@@ -41,4 +41,4 @@ const useBrowserStorage = (hasSupport) => {
   }
 };
 
-module.exports = useBrowserStorage;
+export default useBrowserStorage

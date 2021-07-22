@@ -1,5 +1,5 @@
 const useAnalytics = require("./index");
-const { PAGE_DATA, USER_DATA_LOGGED_IN, EVENT_DATA } = require("../utilities/mocks/index.js");
+const { PAGE_DATA, USER_DATA_LOGGED_IN, EVENT_DATA } = require("../utilities/mocks");
 const {
   ERROR: { UNABLE_TO_RETRIEVE_ITEM, UNABLE_TO_SET_ITEM },
 } = require("../utilities/constants");

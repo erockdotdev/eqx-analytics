@@ -1,12 +1,12 @@
-const timestamp = Date.now();
+export const timestamp = Date.now();
 
-function compareKeys(a, b) {
+export const compareKeys = (a, b) => {
   var aKeys = Object.keys(a).sort();
   var bKeys = Object.keys(b).sort();
   return JSON.stringify(aKeys) === JSON.stringify(bKeys);
 }
 
-function hasLocalStorageSupport() {
+export const hasLocalStorageSupport = () => {
   try {
     if (typeof window === "undefined") {
       return false;
@@ -20,8 +20,3 @@ function hasLocalStorageSupport() {
   return true;
 }
 
-module.exports = {
-  timestamp,
-  compareKeys,
-  hasLocalStorageSupport
-};
