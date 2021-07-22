@@ -25,7 +25,7 @@ const setPageData = (pageData) => {
 };
 
 const removePageData = () => {
-  browserStorage.removeItem(ANALYTICS_DATA_KEYS.pageData);
+  browserStorage.removeItem( ANALYTICS_DATA_KEYS.pageData );
   return getPageData();
 };
 
