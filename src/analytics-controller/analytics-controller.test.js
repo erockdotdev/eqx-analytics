@@ -4,7 +4,7 @@ import {
   ERROR
 } from "../utilities/constants";
 
-const { UNABLE_TO_RETRIEVE_ITEM, UNABLE_TO_SET_ITEM } = ERROR;
+const { UNABLE_TO_RETRIEVE_ITEM } = ERROR;
 describe("Manage Page Data", () => {
   const { page } = useAnalytics;
   beforeAll(() => {

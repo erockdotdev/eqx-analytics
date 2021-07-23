@@ -62,10 +62,6 @@ const removeEventData = () => {
     return getEventData();
 };
 
-/**
- * event - get pageData appData, userData, return with event data
- */
-
 const useAnalytics = {
     page: {
         get: getPageData,
