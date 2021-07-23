@@ -1,0 +1,1 @@
+declare module 'dead-simple-console-colors';

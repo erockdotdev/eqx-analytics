@@ -1,12 +1,12 @@
 # Equinox Analytics Utilities
 
-
-
 ## Installation
+
 ```
 npm install eqx-analytics
 ```
-or 
+
+or
 
 ```
 yarn eqx-analytics
@@ -43,12 +43,15 @@ const PAGE_DATA = {
   screen_detail: null,
 };
 ```
+
 To retrieve the page data call:
+
 ```
 page.get()
 ```
 
 To delete page data call:
+
 ```
 page.remove()
 ```
@@ -66,12 +69,15 @@ const USER_DATA = {
     loggedin_status: true,
   };
 ```
+
 To retrieve the page data call:
+
 ```
 user.get()
 ```
 
 To delete page data call:
+
 ```
 user.remove()
 ```
@@ -80,7 +86,7 @@ user.remove()
 
 When a user initiates an event action, call **event.set(userData)** with the values you would like to set as page data.
 
-Right now we have **do not** have a strict check on the values that can be sent here but you should at the least sent `event_type` 
+Right now we have **do not** have a strict check on the values that can be sent here but you should at the least sent `event_type`
 
 Setting and an event returns an object with the composed event, user and page data. For example, the following object will be set for the event:
 
@@ -98,7 +104,7 @@ const BTN_CLICKED_DATA = {
   };
 ```
 
-the event response will look something like: 
+the event response will look something like:
 
 ```
 {
@@ -123,6 +129,12 @@ event.get()
 ```
 
 To delete page data call:
+
 ```
 event.remove()
 ```
+
+Add section of tech used and deploy to npm and git tagging
+
+TS - Definition instructions
+https://cameronnokes.com/blog/the-30-second-guide-to-publishing-a-typescript-package-to-npm/

@@ -1,10 +1,10 @@
-const useAnalytics = require("./index");
-const { PAGE_DATA, USER_DATA_LOGGED_IN, EVENT_DATA } = require("../utilities/mocks/index.js");
-const {
-  ERROR: { UNABLE_TO_RETRIEVE_ITEM, UNABLE_TO_SET_ITEM },
-} = require("../utilities/constants");
+import useAnalytics from "./index";
+import { PAGE_DATA, USER_DATA_LOGGED_IN, EVENT_DATA } from "../utilities/mocks"
+import {
+  ERROR
+} from "../utilities/constants";
 
-
+const { UNABLE_TO_RETRIEVE_ITEM } = ERROR;
 describe("Manage Page Data", () => {
   const { page } = useAnalytics;
   beforeAll(() => {
@@ -16,13 +16,7 @@ describe("Manage Page Data", () => {
     const storedPageData = page.get();
     expect(PAGE_DATA).toEqual(storedPageData);
   });
-  it("Should fail to add page data to local storage", () => {
-    const invalidKey = { imNotInAllowed: "on a page object" };
-    const pageData = { ...PAGE_DATA, ...invalidKey };
-    const pageResponse = page.set(pageData);
 
-    expect(pageResponse).toBe(UNABLE_TO_SET_ITEM);
-  });
   it("Should read Page Data from local storage", () => {
     const storedPageData = page.get();
 
@@ -50,12 +44,7 @@ describe("Manage User Data", () => {
     const storedUserData = user.get();
     expect(USER_DATA_LOGGED_IN).toEqual(storedUserData);
   });
-  it("Should fail to add page data to local storage", () => {
-    const invalidKey = { imNotInAllowed: "on a user object" };
-    const userData = { ...USER_DATA_LOGGED_IN, ...invalidKey };
-    const userResponse = user.set(userData);
-    expect(userResponse).toBe(UNABLE_TO_SET_ITEM);
-  });
+  
   it("Should read User Data from local storage", () => {
     const storedUserData = user.get();
 
