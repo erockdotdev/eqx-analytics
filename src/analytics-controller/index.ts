@@ -1,8 +1,6 @@
-
-import useBrowserStorage from "../browserStorage";
-import { ANALYTICS_DATA_KEYS } from "../utilities/constants";
-import { hasLocalStorageSupport, timestamp } from "../utilities";
-
+import useBrowserStorage from '../browser-storage';
+import { hasLocalStorageSupport, timestamp } from '../utilities';
+import { EventData, PageData, StorageItem, STORAGE_KEYS, UserData } from '../types';
 
 const hasSupport = hasLocalStorageSupport();
 const browserStorage = useBrowserStorage(hasSupport);
@@ -10,64 +8,58 @@ const browserStorage = useBrowserStorage(hasSupport);
 /**
  * Page Data Functions
  */
-const getPageData = () => {
-  const pageData = browserStorage.getItem(ANALYTICS_DATA_KEYS.pageData);
-  return pageData;
+const getPageData = (): StorageItem => {
+    const pageData = browserStorage.getItem(STORAGE_KEYS.PAGE_DATA);
+    return pageData;
 };
 
-const setPageData = (pageData) => {
-  // const isValidObject = checkIfValidPageObject(pageData);
-  // if (!isValidObject) {
-  //   return UNABLE_TO_SET_ITEM;
-  // }
-  browserStorage.setItem(ANALYTICS_DATA_KEYS.pageData, pageData);
-  return getPageData();
+const setPageData = (pageData: PageData): StorageItem => {
+    browserStorage.setItem(STORAGE_KEYS.PAGE_DATA, pageData);
+    return getPageData();
 };
 
 const removePageData = () => {
-  browserStorage.removeItem( ANALYTICS_DATA_KEYS.pageData );
-  return getPageData();
+    browserStorage.removeItem(STORAGE_KEYS.PAGE_DATA);
+    return getPageData();
 };
 
 /**
  * User Data Functions
  */
-const getUserData = () => {
-  const retrievedItem = browserStorage.getItem(ANALYTICS_DATA_KEYS.userData);
-  return retrievedItem;
+const getUserData = (): StorageItem => {
+    const retrievedItem = browserStorage.getItem(STORAGE_KEYS.USER_DATA);
+    return retrievedItem;
 };
 
-const setUserData = (userData) => {
-  // const isValidObject = checkIfValidUserObject(userData);
-  // if (!isValidObject) return UNABLE_TO_SET_ITEM ;
-  browserStorage.setItem(ANALYTICS_DATA_KEYS.userData, userData);
-  return getUserData();
+const setUserData = (userData: UserData): StorageItem => {
+    browserStorage.setItem(STORAGE_KEYS.USER_DATA, userData);
+    return getUserData();
 };
 
 const removeUserData = () => {
-  browserStorage.removeItem(ANALYTICS_DATA_KEYS.userData);
-  return getUserData();
+    browserStorage.removeItem(STORAGE_KEYS.USER_DATA);
+    return getUserData();
 };
 
 /**
  * Event Data Functions
  */
-const getEventData = () => {
-  const userData = browserStorage.getItem(ANALYTICS_DATA_KEYS.userData);
-  const pageData = browserStorage.getItem(ANALYTICS_DATA_KEYS.pageData);
-  const retrievedItem = browserStorage.getItem(ANALYTICS_DATA_KEYS.eventData);
-  return { ...userData, ...pageData, ...retrievedItem };
+const getEventData = (): StorageItem => {
+    const userData = browserStorage.getItem(STORAGE_KEYS.USER_DATA);
+    const pageData = browserStorage.getItem(STORAGE_KEYS.PAGE_DATA);
+    const retrievedItem = browserStorage.getItem(STORAGE_KEYS.EVENT_DATA);
+    return { ...userData, ...pageData, ...retrievedItem };
 };
 
-const setEventData = (eventData) => {
-  const item = { ...eventData, timestamp };
-  browserStorage.setItem(ANALYTICS_DATA_KEYS.eventData, item);
-  return getEventData();
+const setEventData = (eventData: EventData): StorageItem => {
+    const item = { ...eventData, timestamp };
+    browserStorage.setItem(STORAGE_KEYS.EVENT_DATA, item);
+    return getEventData();
 };
 
 const removeEventData = () => {
-  browserStorage.removeItem(ANALYTICS_DATA_KEYS.eventData);
-  return getEventData();
+    browserStorage.removeItem(STORAGE_KEYS.EVENT_DATA);
+    return getEventData();
 };
 
 /**
@@ -75,21 +67,21 @@ const removeEventData = () => {
  */
 
 const useAnalytics = {
-  page: {
-    get: getPageData,
-    set: setPageData,
-    remove: removePageData,
-  },
-  user: {
-    get: getUserData,
-    set: setUserData,
-    remove: removeUserData,
-  },
-  event: {
-    get: getEventData,
-    set: setEventData,
-    remove: removeEventData,
-  },
+    page: {
+        get: getPageData,
+        set: setPageData,
+        remove: removePageData,
+    },
+    user: {
+        get: getUserData,
+        set: setUserData,
+        remove: removeUserData,
+    },
+    event: {
+        get: getEventData,
+        set: setEventData,
+        remove: removeEventData,
+    },
 };
 
 export default useAnalytics;

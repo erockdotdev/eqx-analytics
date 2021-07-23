@@ -1,24 +1,13 @@
-import Console from 'dead-simple-console-colors';
 import { parseValue } from './browser-storage-utilities';
-import { STORAGE_TYPE, ERROR } from '../utilities/constants';
-import { AnalyticsFunctions } from '../types';
+import { ERROR } from '../utilities/constants';
+import { StorageFunctions, STORAGE_TYPES } from '../types';
 
-/**
- * If there is no browser storage (rendering first on server side)
- * return null functions to avoid errors on FE.
- * Also set a try/catch to log errors once storage is available
- */
-const useBrowserStorage = (hasSupport: boolean): AnalyticsFunctions => {
+const useBrowserStorage = (hasSupport: boolean): StorageFunctions => {
     if (!hasSupport) {
-        Console.error(ERROR.NO_BROWSER_STORAGE);
-        return {
-            getItem: () => null,
-            setItem: () => null,
-            removeItem: () => null,
-        };
+        throw ERROR.NO_BROWSER_STORAGE;
     }
     try {
-        const storage = window[STORAGE_TYPE];
+        const storage = window[STORAGE_TYPES.LOCAL_STORAGE];
         const getItem = (key: string) => {
             const value: string = storage.getItem(key);
             if (value) {
@@ -38,7 +27,7 @@ const useBrowserStorage = (hasSupport: boolean): AnalyticsFunctions => {
             removeItem,
         };
     } catch (error) {
-        console.log('Error:', JSON.stringify(error));
+        throw JSON.stringify(error);
     }
 };
 
