@@ -1,0 +1,8 @@
+/src/*
+.babelrc
+.eslintignore
+.eslintrc
+.prettierrc.js
+global.d.ts
+tsconfig.json
+webpack.config.js
