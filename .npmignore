@@ -1,5 +1,5 @@
 /src/*
-.github/*                                   
+.github/README.md                                
 .husky/*                                    
 .vscode/*
 .babelrc
@@ -9,3 +9,4 @@
 global.d.ts
 tsconfig.json
 webpack.config.js
+jest.config.js

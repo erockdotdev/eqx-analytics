@@ -133,16 +133,3 @@ To delete page data call:
 ```
 event.remove()
 ```
-
-Add section of tech used and deploy to npm and git tagging
-
-TS - Definition instructions
-https://cameronnokes.com/blog/the-30-second-guide-to-publishing-a-typescript-package-to-npm/
-
-Updating eqx-analytics library
-npm install --global np
-
-npm login
-
-https://zellwk.com/blog/publish-to-npm/
-https://github.com/sindresorhus/np

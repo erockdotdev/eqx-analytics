@@ -1,7 +1,7 @@
 {
     "name": "eqx-analytics",
-    "version": "1.2.2",
-    "description": "analytics helpers for equinox web projects",
+    "version": "1.2.3",
+    "description": "analytics utilities for equinox web projects",
     "main": "dist/bundle.js",
     "types": "dist/src/index.d.ts",
     "scripts": {
