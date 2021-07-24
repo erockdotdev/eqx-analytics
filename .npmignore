@@ -1,4 +1,7 @@
 /src/*
+.github/*                                   
+.husky/*                                    
+.vscode/*
 .babelrc
 .eslintignore
 .eslintrc
