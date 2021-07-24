@@ -1,14 +1,16 @@
 {
     "name": "eqx-analytics",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "analytics helpers for equinox web projects",
     "main": "dist/bundle.js",
     "types": "dist/src/index.d.ts",
     "scripts": {
         "build": "webpack",
+        "dev": "webpack --watch",
         "test": "jest",
+        "lint": "eslint . --ext .ts",
         "prepare": "husky install",
-        "lint": "eslint . --ext .ts"
+        "release": "yarn np"
     },
     "author": "unit57",
     "license": "ISC",
